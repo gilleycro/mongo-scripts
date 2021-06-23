@@ -1,0 +1,64 @@
+//insert data
+db.sample.insertMany([{
+  "name":"Marc",
+  "lastName":"Cram",
+  "age": 19,
+  "sports": [
+	"football",
+	"basketball",
+	"swimming",
+	"hockey"
+  ]},
+ {
+  "name":"Tom",
+  "lastName":"Mot",
+  "age": 22,
+  "sports": [
+	"tennis",
+	"surfing"
+  ]},
+  {
+  "name":"Ane",
+  "lastName":"Ena",
+  "age": 33,
+  info: [ {
+	height: 168,
+	eyeColor: "brown"
+	}
+  ]}
+])
+
+//match
+db.sample.aggregate([
+    {
+	  $match: {name:"Tom"}
+	}
+])
+
+//unwind
+db.sample.aggregate([
+    {
+	  $unwind: "$sports"
+	}
+])
+
+//unwind + match
+db.sample.aggregate([
+    {
+	  $unwind: "$sports"
+	},
+	{
+	  $match: {sports:"basketball"}
+	}
+])
+
+
+//match + unwind
+db.sample.aggregate([
+    {
+	  $match: {name:"Marc"}
+	},
+    {
+	  $unwind: "$sports"
+	}
+])
