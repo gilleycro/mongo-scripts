@@ -1,0 +1,35 @@
+
+//insert data
+db.sample.insertMany([{
+  "name":"Marc",
+  "lastName":"Cram",
+  "age": 19
+},
+{
+  "name":"Tom",
+  "lastName":"Mot",
+  "age": 29
+},
+{
+  "name":"Ane",
+  "lastName":"Ena",
+  "age": 22
+}])
+
+//count
+db.sample.count()
+
+//find by name
+db.sample.find({name:"Marc"})
+
+//find by age 
+db.sample.find({age:19})
+
+//find by age greater than 
+db.sample.find({age: {$gt :19}})
+
+//delete one
+db.sample.deleteOne({name: "Marc"})
+
+//delete many
+db.sample.deleteMany({age: {$gt :19}})

@@ -1,0 +1,65 @@
+
+//insert data
+db.sample.insertMany([{
+  "name":"Marc",
+  "lastName":"Cram",
+  "age": 19,
+  "sports": [
+	"football",
+	"basketball",
+	"swimming",
+	"hockey"
+  ]},
+ {
+  "name":"Tom",
+  "lastName":"Mot",
+  "age": 22,
+  "sports": [
+	"tennis",
+	"surfing"
+  ]},
+  {
+  "name":"Ane",
+  "lastName":"Ena",
+  "age": 33,
+  info: [ {
+	height: 168,
+	eyeColor: "brown"
+	}
+  ]}
+])
+
+//match documents that have at least one element in array
+db.sample.find({
+	sports: {
+	    $elemMatch: 
+	        {$eq: "football"}
+	    }
+})
+
+//match documents that do not have element in array
+db.sample.find({
+	sports: {
+	    $not: {
+	        $elemMatch: 
+	            {$eq: "football"}
+	        }
+	    }
+})
+
+//match document inside array
+db.sample.find({
+	info: {
+	    $elemMatch: 
+	        {height: 168}
+	    }
+})
+
+
+//multiple options are also possible
+db.sample.find({
+	info: {
+	    $elemMatch: 
+	        {height: 168, eyeColor:"brown"}
+	    }
+})
